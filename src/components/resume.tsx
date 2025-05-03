@@ -12,24 +12,23 @@ const Resume = forwardRef<HTMLDivElement>((props, ref) => {
       title: "Mestrado - Engenharia de Software",
       organization: "CESAR School",
       description:
-        "Pesquisa em segurança de aplicações e metodologias ágeis. Foco em desenvolvimento de frameworks para análise de vulnerabilidades.",
+        "Desenvolvimento da plataforma Stratosage, focada em análise da maturidade tecnológica, performance, custos, eficiência e resiliência de startups. A pesquisa inclui implementação de inteligência artificial para otimização de resultados e avaliação contínua da maturidade.",
     },
     {
       year: "2010-2015",
       title: "Bacharelado - Ciência da Computação",
       organization: "FAESF",
-      description:
-        "Foco em desenvolvimento de software e sistemas distribuídos. Projeto de conclusão sobre otimização de algoritmos de busca.",
+      description: `Pesquisa foco em Web Semântica, investigando a arquitetura, aplicações práticas, vantagens e os desafios para a consolidação da chamada "Internet do Futuro". O estudo abordou os impactos da Web Semântica na interoperabilidade, organização inteligente de dados e evolução dos padrões da internet.`,
     },
   ];
 
   const experience = [
     {
       year: "2023-atual",
-      title: "Frontend Lead e Engenheiro Full Stack",
+      title: "Engenheiro de Software",
       organization: "Bidweb Security IT",
       description:
-        "Liderança no desenvolvimento de plataformas de segurança, implementação de arquiteturas escaláveis e mentoria de equipes.",
+        "Liderança no desenvolvimento de plataformas de monitoramento de segurança e de analise de maturidade, implementação de arquiteturas escaláveis e mentoria de equipes.",
     },
     {
       year: "2017-2023",

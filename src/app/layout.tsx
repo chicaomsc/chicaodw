@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className="scroll-smooth">
+    <html lang="pt-BR" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${poppins.variable} font-sans bg-gradient-to-b from-background-darker to-background-dark text-white`}>
         {children}

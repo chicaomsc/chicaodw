@@ -1,7 +1,5 @@
 "use client";
 import About from "@/components/about";
-import Blog from "@/components/blog";
-import Certifications from "@/components/certifications";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
@@ -9,20 +7,16 @@ import Hero from "@/components/hero";
 import Projects from "@/components/projects";
 import Resume from "@/components/resume";
 import ScrollToTop from "@/components/scroll-to-top";
-import Services from "@/components/services";
-import Testimonials from "@/components/testimonials";
+import Skills from "@/components/skills";
 import type React from "react";
 
 import { useRef } from "react";
 
 export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLDivElement>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
-  const testimonialsRef = useRef<HTMLDivElement>(null);
-  const blogRef = useRef<HTMLDivElement>(null);
-  const certificationsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -42,10 +36,9 @@ export default function Home() {
       <Header
         scrollToSection={scrollToSection}
         aboutRef={aboutRef}
-        servicesRef={servicesRef}
+        skillsRef={skillsRef}
         resumeRef={resumeRef}
         projectsRef={projectsRef}
-        blogRef={blogRef}
         contactRef={contactRef}
       />
 
@@ -57,22 +50,17 @@ export default function Home() {
       />
 
       <About ref={aboutRef} />
-      <Services ref={servicesRef} />
+      <Skills ref={skillsRef} />
       <Resume ref={resumeRef} />
       <Projects ref={projectsRef} />
-      <Testimonials ref={testimonialsRef} />
-      <Blog ref={blogRef} />
-      <Certifications ref={certificationsRef} />
       <Contact ref={contactRef} />
 
       <Footer
         scrollToSection={scrollToSection}
         aboutRef={aboutRef}
-        servicesRef={servicesRef}
+        skillsRef={skillsRef}
         resumeRef={resumeRef}
         projectsRef={projectsRef}
-        blogRef={blogRef}
-        certificationsRef={certificationsRef}
         contactRef={contactRef}
       />
 

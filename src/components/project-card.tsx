@@ -4,8 +4,6 @@ import type React from "react";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
-import Link from "next/link";
 
 interface ProjectCardProps {
   title: string;
@@ -35,12 +33,14 @@ export default function ProjectCard({
           src={image || "/placeholder.svg"}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-darker to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
           <div className="flex space-x-4 mb-4">
-            <ProjectButton icon={<ExternalLink size={16} />} label="Ver Demo" />
-            <ProjectButton icon={<Github size={16} />} label="Ver Código" />
+            {/* <ProjectButton icon={<ExternalLink size={16} />} label="Ver Demo" />
+            <ProjectButton icon={<Github size={16} />} label="Ver Código" /> */}
           </div>
         </div>
       </div>
@@ -59,18 +59,18 @@ export default function ProjectCard({
   );
 }
 
-interface ProjectButtonProps {
-  icon: React.ReactNode;
-  label: string;
-}
+// interface ProjectButtonProps {
+//   icon: React.ReactNode;
+//   label: string;
+// }
 
-function ProjectButton({ icon, label }: ProjectButtonProps) {
-  return (
-    <Link
-      href="#"
-      className="flex items-center bg-black/80 backdrop-blur-xs text-white hover:bg-primary-dark px-3 py-2 rounded-md text-xs transition-colors duration-300">
-      <span className="mr-1">{icon}</span>
-      {label}
-    </Link>
-  );
-}
+// function ProjectButton({ icon, label }: ProjectButtonProps) {
+//   return (
+//     <Link
+//       href="#"
+//       className="flex items-center bg-black/80 backdrop-blur-xs text-white hover:bg-primary-dark px-3 py-2 rounded-md text-xs transition-colors duration-300">
+//       <span className="mr-1">{icon}</span>
+//       {label}
+//     </Link>
+//   );
+// }

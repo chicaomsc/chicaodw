@@ -4,25 +4,23 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Github, Linkedin, Download, Menu, X } from "lucide-react";
+import { Github, Linkedin, Download, Menu, X, Instagram } from "lucide-react";
 
 interface HeaderProps {
   scrollToSection: (ref: React.RefObject<HTMLDivElement | null>) => void;
   aboutRef: React.RefObject<HTMLDivElement | null>;
-  servicesRef: React.RefObject<HTMLDivElement | null>;
+  skillsRef: React.RefObject<HTMLDivElement | null>;
   resumeRef: React.RefObject<HTMLDivElement | null>;
   projectsRef: React.RefObject<HTMLDivElement | null>;
-  blogRef: React.RefObject<HTMLDivElement | null>;
   contactRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function Header({
   scrollToSection,
   aboutRef,
-  servicesRef,
+  skillsRef,
   resumeRef,
   projectsRef,
-  blogRef,
   contactRef,
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -60,48 +58,45 @@ export default function Header({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}>
           <Link href="/" className="group flex items-center">
-            <div className="relative w-10 h-10 mr-3 overflow-hidden rounded-full bg-gradient-to-br from-primary-light to-primary-dark">
-              <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-white">
-                FC
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-light to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
             <h1 className="text-2xl font-bold font-poppins bg-gradient bg-linear-to-r from-primary-light to-primary-dark bg-clip-text text-transparent">
-              Francisco Costa
+              Chicãodw
             </h1>
           </Link>
         </motion.div>
 
         <nav className="hidden md:flex items-center space-x-8 ">
           <NavLink onClick={() => scrollToSection(aboutRef)}>Sobre</NavLink>
-          <NavLink onClick={() => scrollToSection(servicesRef)}>
-            Serviços
+          <NavLink onClick={() => scrollToSection(skillsRef)}>
+            Habilidades
           </NavLink>
-          <NavLink onClick={() => scrollToSection(resumeRef)}>
-            Currículo
-          </NavLink>
+          <NavLink onClick={() => scrollToSection(resumeRef)}>Jornada</NavLink>
           <NavLink onClick={() => scrollToSection(projectsRef)}>
             Projetos
           </NavLink>
-          <NavLink onClick={() => scrollToSection(blogRef)}>Blog</NavLink>
           <NavLink onClick={() => scrollToSection(contactRef)}>Contato</NavLink>
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
           <SocialLink
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/chicaodw"
             icon={<Linkedin size={20} />}
             label="LinkedIn"
           />
           <SocialLink
-            href="https://github.com"
+            href="https://github.com/chicaodw"
             icon={<Github size={20} />}
             label="GitHub"
           />
 
+          <SocialLink
+            href="https://instagram.com/chicaodw"
+            icon={<Instagram size={20} />}
+            label="Instagram"
+          />
+
           <Link
-            href="/cv.pdf"
-            download
+            href="/FranciscoCosta_CV.pdf"
+            download="CV_FranciscoCosta.pdf"
             className="flex items-center bg-gradient bg-linear-to-r from-primary-light to-primary-dark hover:from-primary-dark hover:to-primary-light text-white px-4 py-2 rounded-md text-sm transition-all duration-300 shadow-lg hover:shadow-primary-light/20">
             <Download size={16} className="mr-2" />
             Baixar Currículo
@@ -128,7 +123,7 @@ export default function Header({
               <MobileNavLink onClick={() => handleMobileNavClick(aboutRef)}>
                 Sobre
               </MobileNavLink>
-              <MobileNavLink onClick={() => handleMobileNavClick(servicesRef)}>
+              <MobileNavLink onClick={() => handleMobileNavClick(skillsRef)}>
                 Serviços
               </MobileNavLink>
               <MobileNavLink onClick={() => handleMobileNavClick(resumeRef)}>
@@ -137,29 +132,31 @@ export default function Header({
               <MobileNavLink onClick={() => handleMobileNavClick(projectsRef)}>
                 Projetos
               </MobileNavLink>
-              <MobileNavLink onClick={() => handleMobileNavClick(blogRef)}>
-                Blog
-              </MobileNavLink>
               <MobileNavLink onClick={() => handleMobileNavClick(contactRef)}>
                 Contato
               </MobileNavLink>
 
               <div className="flex justify-center space-x-6 pt-4 border-t border-white/10">
                 <SocialLink
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/chicaodw"
                   icon={<Linkedin size={20} />}
                   label="LinkedIn"
                 />
                 <SocialLink
-                  href="https://github.com"
+                  href="https://github.com/chicaodw"
                   icon={<Github size={20} />}
                   label="GitHub"
+                />
+                <SocialLink
+                  href="https://github.com/chicaodw"
+                  icon={<Instagram size={20} />}
+                  label="Instagram"
                 />
               </div>
 
               <Link
-                href="/cv.pdf"
-                download
+                href="/FranciscoCosta_CV.pdf"
+                download="CV_FranciscoCosta.pdf"
                 className="flex items-center justify-center bg-gradient bg-linear-to-r from-primary-light to-primary-dark hover:from-primary-dark hover:to-primary-light text-white px-4 py-3 rounded-md text-sm transition-all duration-300 shadow-lg hover:shadow-primary-light/20">
                 <Download size={16} className="mr-2" />
                 Baixar Currículo

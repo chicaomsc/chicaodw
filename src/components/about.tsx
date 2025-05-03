@@ -20,19 +20,18 @@ const About = forwardRef<HTMLDivElement>((props, ref) => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}>
-            <div className="relative">
-              <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl">
-                <Image
-                  src="/01.webp"
-                  alt="Francisco Costa"
-                  width={500}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-2/3 h-2/3 bg-gradient-to-br from-primary-light to-primary-dark rounded-lg -z-10 opacity-20 blur-xs"></div>
-              <div className="absolute -top-6 -left-6 w-2/3 h-2/3 border-2 border-primary-light/30 rounded-lg -z-10"></div>
+            viewport={{ once: true }}
+            className="relative">
+            <div className="absolute -bottom-6 -right-6 w-full h-full bg-gradient-to-br from-primary-light to-primary-dark rounded-lg opacity-20 blur-sm"></div>
+            <div className="absolute -top-6 -left-6 w-full h-full border-2 border-primary-light/30 rounded-lg"></div>
+            <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl border-2 border-white/10">
+              <Image
+                src="/dw1.webp"
+                alt="Francisco Costa"
+                width={500}
+                height={600}
+                className="w-full h-auto object-cover"
+              />
             </div>
           </motion.div>
 
@@ -46,21 +45,21 @@ const About = forwardRef<HTMLDivElement>((props, ref) => {
             </h3>
 
             <p className="text-lg text-white/80 mb-6">
-              Com mais de 7 anos de experiência como desenvolvedor full stack,
-              atualmente sou mestrando em Engenharia de Software pela CESAR
-              School, com foco em segurança de aplicações.
+              Com mais de 7 anos de experiência em projetos web e mobile,
+              atualmente aprofundo meus conhecimentos como mestrando em
+              Engenharia de Software pela CESAR School.
             </p>
 
             <p className="text-lg text-white/80 mb-6">
-              Possuo experiência prática em React, Next.js, Angular, Java,
-              Node.js e AWS, tendo atuado em projetos de segurança, educação e
-              tecnologia pública.
+              Domínio em tecnologias como React, Next.js, Angular, Java (Spring
+              Boot), Node.js e AWS, atuando de forma end-to-end e aplicando as
+              melhores práticas em arquitetura limpa e metodologias ágeis.
             </p>
 
             <p className="text-lg text-white/80 mb-8">
-              Meu objetivo é desenvolver soluções tecnológicas que sejam não
-              apenas funcionais, mas também seguras, escaláveis e que gerem
-              impacto positivo.
+              Focado em desenvolver aplicações que aliam eficiência, segurança e
+              usabilidade, entregando valor direto ao negócio e impulsionando a
+              inovação contínua.
             </p>
 
             <div className="flex flex-col gap-6">

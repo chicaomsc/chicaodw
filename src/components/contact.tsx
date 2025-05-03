@@ -4,11 +4,17 @@ import type React from "react";
 
 import { forwardRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Linkedin, Mail, MapPin, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import SectionTitle from "./section-title";
+import {
+  sendConfirmationEmailService,
+  sendContactEmailService,
+} from "@/services/emailService";
+import ConfirmationMessage from "./ConfirmationMessage";
 
 const Contact = forwardRef<HTMLDivElement>((props, ref) => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -25,25 +31,44 @@ const Contact = forwardRef<HTMLDivElement>((props, ref) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log(formState);
-    alert("Mensagem enviada com sucesso!");
-    setFormState({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+
+    try {
+      await sendContactEmailService(
+        formState.name,
+        formState.email,
+        formState.subject,
+        formState.message
+      );
+
+      await sendConfirmationEmailService(
+        formState.name,
+        formState.email,
+        formState.subject
+      );
+
+      setShowConfirmation(true);
+
+      setFormState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Erro ao enviar e-mail:", error);
+      alert(
+        "Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente."
+      );
+    }
   };
 
   return (
-    <section ref={ref} className="py-20 bg-background-dark relative">
-      {/* Background decoration */}
+    <section ref={ref} className="py-20 bg-background-light relative">
       <div
-        className="absolute top-0 left-0 w-full h-20 bg-background-light"
-        style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 0)" }}></div>
+        className="absolute top-0 left-0 w-full h-20 bg-background-dark"
+        style={{ clipPath: "polygon(0 0, 0 0, 0 100%, 100% 0)" }}></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <SectionTitle>Contato</SectionTitle>
@@ -60,29 +85,30 @@ const Contact = forwardRef<HTMLDivElement>((props, ref) => {
             </h3>
 
             <p className="text-white/70 mb-8">
-              Estou disponível para projetos freelance, oportunidades de
-              trabalho ou apenas para trocar ideias sobre tecnologia.
+              Aberto a novos desafios, projetos freelance e oportunidades
+              profissionais. Se quiser bater um papo sobre tecnologia, inovação
+              ou possíveis parcerias, fique à vontade para entrar em contato!
             </p>
 
             <div className="flex flex-col gap-6">
               <ContactInfo
                 icon={<MapPin size={20} />}
                 title="Localização"
-                content="São Luís, Maranhão, Brasil"
+                content="Recife, Pernambuco, Brasil"
               />
 
               <ContactInfo
                 icon={<Mail size={20} />}
                 title="Email"
-                content="francisco@exemplo.com"
-                link="mailto:francisco@exemplo.com"
+                content="contato@franciscocosta.dev.br"
+                link="mailto:contato@franciscocosta.dev.br"
               />
 
               <ContactInfo
-                icon={<Phone size={20} />}
-                title="Telefone"
-                content="+55 (98) 99999-9999"
-                link="tel:+5598999999999"
+                icon={<MessageCircle size={20} />}
+                title="WhatsApp"
+                content="+55 (98) 98428-9317"
+                link="https://wa.me/5599984289317?text=Olá%20Francisco!%20Vi%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20um%20possível%20projeto."
               />
             </div>
 
@@ -117,82 +143,86 @@ const Contact = forwardRef<HTMLDivElement>((props, ref) => {
               Envie uma Mensagem
             </h3>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            {showConfirmation ? (
+              <ConfirmationMessage onClose={() => setShowConfirmation(false)} />
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium mb-2 text-white/80">
+                      Nome
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      value={formState.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-background-dark border border-white/10 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-light/50 focus:border-transparent transition-all duration-300"
+                      placeholder="Seu nome"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium mb-2 text-white/80">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={formState.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-background-dark border border-white/10 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-light/50 focus:border-transparent transition-all duration-300"
+                      placeholder="seu.email@exemplo.com"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label
-                    htmlFor="name"
+                    htmlFor="subject"
                     className="block text-sm font-medium mb-2 text-white/80">
-                    Nome
+                    Assunto
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    value={formState.name}
+                    id="subject"
+                    value={formState.subject}
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-background-dark border border-white/10 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-light/50 focus:border-transparent transition-all duration-300"
-                    placeholder="Seu nome"
+                    placeholder="Assunto da mensagem"
                   />
                 </div>
 
                 <div>
                   <label
-                    htmlFor="email"
+                    htmlFor="message"
                     className="block text-sm font-medium mb-2 text-white/80">
-                    Email
+                    Mensagem
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={formState.email}
+                  <textarea
+                    id="message"
+                    rows={5}
+                    value={formState.message}
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-background-dark border border-white/10 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-light/50 focus:border-transparent transition-all duration-300"
-                    placeholder="seu.email@exemplo.com"
-                  />
+                    placeholder="Sua mensagem..."></textarea>
                 </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium mb-2 text-white/80">
-                  Assunto
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  value={formState.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background-dark border border-white/10 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-light/50 focus:border-transparent transition-all duration-300"
-                  placeholder="Assunto da mensagem"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2 text-white/80">
-                  Mensagem
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  value={formState.message}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background-dark border border-white/10 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-light/50 focus:border-transparent transition-all duration-300"
-                  placeholder="Sua mensagem..."></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-gradient bg-linear-to-r from-primary-light to-primary-dark hover:from-primary-dark hover:to-primary-light text-white px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-primary-light/20 flex items-center justify-center cursor-pointer">
-                <Send size={18} className="mr-2" />
-                Enviar Mensagem
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="w-full bg-gradient bg-linear-to-r from-primary-light to-primary-dark hover:from-primary-dark hover:to-primary-light text-white px-6 py-3 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-primary-light/20 flex items-center justify-center cursor-pointer">
+                  <Send size={18} className="mr-2" />
+                  Enviar Mensagem
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

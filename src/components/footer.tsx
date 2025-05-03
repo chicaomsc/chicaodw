@@ -3,27 +3,23 @@
 import type React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Heart } from "lucide-react";
+import { Github, Heart, Instagram, Linkedin } from "lucide-react";
 
 interface FooterProps {
   scrollToSection: (ref: React.RefObject<HTMLDivElement | null>) => void;
   aboutRef: React.RefObject<HTMLDivElement | null>;
-  servicesRef: React.RefObject<HTMLDivElement | null>;
+  skillsRef: React.RefObject<HTMLDivElement | null>;
   resumeRef: React.RefObject<HTMLDivElement | null>;
   projectsRef: React.RefObject<HTMLDivElement | null>;
-  blogRef: React.RefObject<HTMLDivElement | null>;
-  certificationsRef: React.RefObject<HTMLDivElement | null>;
   contactRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function Footer({
   scrollToSection,
   aboutRef,
-  servicesRef,
+  skillsRef,
   resumeRef,
   projectsRef,
-  blogRef,
-  certificationsRef,
   contactRef,
 }: FooterProps) {
   return (
@@ -36,12 +32,23 @@ export default function Footer({
             </h3>
             <p className="text-white/60 mb-4">
               Engenheiro de Software especializado em desenvolvimento Full Stack
-              e soluções de segurança.
             </p>
             <div className="flex space-x-4">
-              <SocialIcon href="https://linkedin.com" name="LinkedIn" />
-              <SocialIcon href="https://github.com" name="GitHub" />
-              <SocialIcon href="https://twitter.com" name="Twitter" />
+              <SocialIcon
+                href="https://linkedin.com/in/chicaodw"
+                name="LinkedIn"
+                icon={<Linkedin className="w-4 h-4" />}
+              />
+              <SocialIcon
+                href="https://github.com/chicaodw"
+                name="GitHub"
+                icon={<Github className="w-4 h-4" />}
+              />
+              <SocialIcon
+                href="https://instagram.com/chicaodw"
+                name="Instagram"
+                icon={<Instagram className="w-4 h-4" />}
+              />
             </div>
           </div>
 
@@ -51,11 +58,11 @@ export default function Footer({
               <FooterLink onClick={() => scrollToSection(aboutRef)}>
                 Sobre
               </FooterLink>
-              <FooterLink onClick={() => scrollToSection(servicesRef)}>
-                Serviços
+              <FooterLink onClick={() => scrollToSection(skillsRef)}>
+                Habilidades
               </FooterLink>
               <FooterLink onClick={() => scrollToSection(resumeRef)}>
-                Currículo
+                Jornada
               </FooterLink>
               <FooterLink onClick={() => scrollToSection(projectsRef)}>
                 Projetos
@@ -66,18 +73,12 @@ export default function Footer({
           <div>
             <h4 className="text-lg font-medium mb-4">Mais</h4>
             <nav className="flex flex-col gap-2">
-              <FooterLink onClick={() => scrollToSection(blogRef)}>
-                Blog
-              </FooterLink>
-              <FooterLink onClick={() => scrollToSection(certificationsRef)}>
-                Certificações
-              </FooterLink>
               <FooterLink onClick={() => scrollToSection(contactRef)}>
                 Contato
               </FooterLink>
               <Link
-                href="/cv.pdf"
-                download
+                href="/FranciscoCosta_CV.pdf"
+                download="CV_FranciscoCosta.pdf"
                 className="text-white/60 hover:text-primary-light transition-colors duration-300">
                 Baixar CV
               </Link>
@@ -87,19 +88,21 @@ export default function Footer({
           <div>
             <h4 className="text-lg font-medium mb-4">Contato</h4>
             <div className="flex flex-col gap-2 text-white/60">
-              <p>São Luís, Maranhão, Brasil</p>
+              <p>Recife, Pernambuco, Brasil</p>
               <p>
                 <Link
-                  href="mailto:francisco@exemplo.com"
+                  href="mailto:contato@franciscocosta.dev.br"
                   className="hover:text-primary-light transition-colors duration-300">
-                  francisco@exemplo.com
+                  contato@franciscocosta.dev.br
                 </Link>
               </p>
               <p>
                 <Link
-                  href="tel:+5598999999999"
+                  href="https://wa.me/5599984289317"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-primary-light transition-colors duration-300">
-                  +55 (98) 99999-9999
+                  +55 (99) 98428-9317
                 </Link>
               </p>
             </div>
@@ -120,7 +123,14 @@ export default function Footer({
             className="text-sm text-white/50 flex items-center">
             Desenvolvido com
             <Heart size={14} className="mx-1 text-primary-light" />
-            usando Next.js e Tailwind CSS
+            por{" "}
+            <Link
+              href="https://www.instagram.com/chicaodw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-light hover:underline ml-1">
+              @chicaodw
+            </Link>
           </motion.p>
         </div>
       </div>
@@ -137,7 +147,7 @@ function FooterLink({ children, onClick }: FooterLinkProps) {
   return (
     <button
       onClick={onClick}
-      className="text-white/60 hover:text-primary-light transition-colors duration-300 text-left">
+      className="text-white/60 hover:text-primary-light transition-colors duration-300 text-left cursor-pointer">
       {children}
     </button>
   );
@@ -146,9 +156,10 @@ function FooterLink({ children, onClick }: FooterLinkProps) {
 interface SocialIconProps {
   href: string;
   name: string;
+  icon: React.ReactNode;
 }
 
-function SocialIcon({ href, name }: SocialIconProps) {
+function SocialIcon({ href, name, icon }: SocialIconProps) {
   return (
     <Link
       href={href}
@@ -156,6 +167,7 @@ function SocialIcon({ href, name }: SocialIconProps) {
       rel="noopener noreferrer"
       className="w-8 h-8 rounded-full bg-background-lighter flex items-center justify-center text-white/70 hover:text-primary-light hover:bg-background-light transition-all duration-300"
       aria-label={name}>
+      {icon}
       <span className="sr-only">{name}</span>
     </Link>
   );
