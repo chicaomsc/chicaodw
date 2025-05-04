@@ -124,10 +124,10 @@ export default function Header({
                 Sobre
               </MobileNavLink>
               <MobileNavLink onClick={() => handleMobileNavClick(skillsRef)}>
-                Serviços
+                Habilidades
               </MobileNavLink>
               <MobileNavLink onClick={() => handleMobileNavClick(resumeRef)}>
-                Currículo
+                Jornada
               </MobileNavLink>
               <MobileNavLink onClick={() => handleMobileNavClick(projectsRef)}>
                 Projetos
