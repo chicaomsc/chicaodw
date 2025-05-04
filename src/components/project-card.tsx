@@ -31,10 +31,9 @@ export default function ProjectCard({
       <div className="relative h-48 overflow-hidden">
         <Image
           src={image || "/placeholder.svg"}
-          alt={title}
+          alt={`${title} - ${description}`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background-darker to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">

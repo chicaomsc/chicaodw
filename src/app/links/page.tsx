@@ -82,7 +82,7 @@ export default function LinksPage() {
             <div className="relative z-10 rounded-full overflow-hidden w-32 h-32 border-2 border-white/10 shadow-xl">
               <Image
                 src="/dw3.webp"
-                alt="Francisco Costa"
+                alt="Francisco Costa - Engenheiro de Software Full Stack e Cloud"
                 fill
                 sizes="128px"
                 className="object-cover scale-[1.4] translate-y-5"

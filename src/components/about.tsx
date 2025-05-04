@@ -27,7 +27,7 @@ const About = forwardRef<HTMLDivElement>((props, ref) => {
             <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl border-2 border-white/10">
               <Image
                 src="/dw1.webp"
-                alt="Francisco Costa"
+                alt="Francisco Costa - Engenheiro de Software Full Stack e Cloud"
                 width={500}
                 height={600}
                 className="w-full h-auto object-cover"
