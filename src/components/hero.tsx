@@ -49,14 +49,14 @@ export default function Hero({
             initial="hidden"
             animate="show"
             className="text-center md:text-left">
-            <motion.h2
+            <motion.h1
               variants={item}
               className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 font-poppins">
               <span className="block text-white">Francisco Costa</span>
               <span className="block leading-snug text-5xl mt-4 bg-gradient bg-linear-to-r from-primary-light to-primary-dark bg-clip-text text-transparent">
                 Engenheiro de Software
               </span>
-            </motion.h2>
+            </motion.h1>
 
             <motion.p
               variants={item}
@@ -118,7 +118,7 @@ export default function Hero({
                   width={500}
                   height={600}
                   className="w-full h-auto object-cover"
-                  priority
+                  sizes="50vw"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-full h-full bg-gradient-to-br from-primary-light to-primary-dark rounded-lg -z-10 opacity-20 blur-sm"></div>
@@ -136,6 +136,7 @@ export default function Hero({
           <ChevronsDown
             size={30}
             className="animate-bounce text-primary-light"
+            aria-label="Rolar para baixo"
           />
         </motion.div>
       </div>

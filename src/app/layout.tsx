@@ -96,7 +96,7 @@ export default function RootLayout({
           })}
         </Script>
         <Script
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=G-6081GKK9TQ`}
         />
         <Script id="ga4-init" strategy="afterInteractive">
